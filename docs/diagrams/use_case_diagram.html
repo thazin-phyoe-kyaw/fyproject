@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fig 6.3: Use Case Diagram - HireReady</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #fff; font-family: 'Segoe UI', Arial, sans-serif; padding: 30px; }
+h1 { text-align: center; font-size: 16px; margin-bottom: 30px; font-weight: 600; }
+.canvas { position: relative; width: 1100px; margin: 0 auto; min-height: 750px; }
+
+/* Actor stick figure */
+.actor { position: absolute; text-align: center; }
+.actor .head { width: 24px; height: 24px; border: 2px solid #333; border-radius: 50%; margin: 0 auto; }
+.actor .body-line { width: 2px; height: 30px; background: #333; margin: 0 auto; }
+.actor .arms { width: 40px; height: 2px; background: #333; margin: -20px auto 0; }
+.actor .legs { position: relative; width: 40px; height: 30px; margin: 0 auto; }
+.actor .legs::before, .actor .legs::after { content: ''; position: absolute; width: 2px; height: 30px; background: #333; top: 0; }
+.actor .legs::before { left: 8px; transform: rotate(15deg); }
+.actor .legs::after { right: 8px; transform: rotate(-15deg); }
+.actor .label { margin-top: 8px; font-weight: bold; font-size: 13px; }
+
+/* System boundary */
+.system-boundary { position: absolute; border: 2px solid #2c3e6b; border-radius: 8px; padding: 20px; }
+.system-boundary .sys-label { position: absolute; top: -12px; left: 20px; background: #fff; padding: 0 10px; font-weight: bold; color: #2c3e6b; font-size: 14px; }
+
+/* Use case ovals */
+.use-case { position: absolute; background: #2c5aa0; color: #fff; border-radius: 50px; padding: 10px 20px; text-align: center; font-size: 12px; font-weight: 500; min-width: 180px; cursor: default; border: 2px solid #1a3d6e; }
+.use-case.ai { border: 2px dashed #e67e22; }
+
+/* External system */
+.external { position: absolute; border: 2px solid #555; background: #d5e8f5; padding: 12px 20px; text-align: center; font-weight: bold; font-size: 13px; border-radius: 4px; }
+
+svg.lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+svg.lines line { stroke: #555; stroke-width: 1.2; }
+svg.lines line.ai-line { stroke: #e67e22; stroke-width: 1.5; stroke-dasharray: 6,3; }
+</style>
+</head>
+<body>
+<h1>Fig 6.3: Use Case Diagram for HireReady System</h1>
+<div class="canvas">
+
+<!-- Actor -->
+<div class="actor" style="left: 20px; top: 300px;">
+  <div class="head"></div>
+  <div class="body-line"></div>
+  <div class="arms"></div>
+  <div class="legs"></div>
+  <div class="label">Candidate</div>
+</div>
+
+<!-- System Boundary -->
+<div class="system-boundary" style="left: 160px; top: 10px; width: 650px; height: 720px;">
+  <span class="sys-label">HireReady System</span>
+
+  <!-- Row 1: Auth -->
+  <div class="use-case" style="left: 30px; top: 20px; width: 170px;">Register / Login</div>
+  <div class="use-case" style="left: 240px; top: 20px; width: 170px;">Manage Profile</div>
+  <div class="use-case" style="left: 440px; top: 20px; width: 170px;">Update Settings</div>
+
+  <!-- Row 2: Account -->
+  <div class="use-case" style="left: 240px; top: 90px; width: 170px;">Delete Account</div>
+
+  <!-- Row 3: Resume Scan -->
+  <div class="use-case ai" style="left: 30px; top: 170px; width: 220px;">Upload Resume (PDF/DOCX)</div>
+  <div class="use-case" style="left: 290px; top: 170px; width: 200px;">View ATS Scan Results</div>
+  <div class="use-case" style="left: 290px; top: 240px; width: 200px;">View Scan History</div>
+
+  <!-- Row 4: Resume Builder -->
+  <div class="use-case" style="left: 30px; top: 320px; width: 220px;">Build Resume via Wizard</div>
+  <div class="use-case ai" style="left: 290px; top: 320px; width: 200px;">AI Enhance Summary</div>
+  <div class="use-case" style="left: 290px; top: 390px; width: 200px;">Export Resume as PDF</div>
+
+  <!-- Row 5: Roadmap -->
+  <div class="use-case ai" style="left: 30px; top: 470px; width: 220px;">Generate Career Roadmap</div>
+  <div class="use-case" style="left: 290px; top: 470px; width: 220px;">Track Roadmap Progress</div>
+
+  <!-- Row 6: Interview -->
+  <div class="use-case ai" style="left: 30px; top: 560px; width: 220px;">Configure Mock Interview</div>
+  <div class="use-case ai" style="left: 290px; top: 560px; width: 220px;">Chat with AI Interviewer</div>
+  <div class="use-case ai" style="left: 140px; top: 640px; width: 240px;">View Performance Feedback</div>
+</div>
+
+<!-- External System -->
+<div class="external" style="left: 900px; top: 340px; width: 170px;">
+  Google Gemini<br>AI Engine
+</div>
+
+<!-- SVG Lines -->
+<svg class="lines" viewBox="0 0 1100 750">
+  <!-- Actor lines to use cases -->
+  <line x1="65" y1="350" x2="190" y2="55"/>
+  <line x1="65" y1="350" x2="400" y2="55"/>
+  <line x1="65" y1="350" x2="600" y2="55"/>
+  <line x1="65" y1="350" x2="400" y2="125"/>
+  <line x1="65" y1="350" x2="190" y2="205"/>
+  <line x1="65" y1="350" x2="450" y2="205"/>
+  <line x1="65" y1="350" x2="450" y2="275"/>
+  <line x1="65" y1="350" x2="190" y2="355"/>
+  <line x1="65" y1="350" x2="450" y2="355"/>
+  <line x1="65" y1="350" x2="450" y2="425"/>
+  <line x1="65" y1="350" x2="190" y2="505"/>
+  <line x1="65" y1="350" x2="450" y2="505"/>
+  <line x1="65" y1="350" x2="190" y2="595"/>
+  <line x1="65" y1="350" x2="450" y2="595"/>
+  <line x1="65" y1="350" x2="310" y2="675"/>
+
+  <!-- AI lines to Gemini -->
+  <line class="ai-line" x1="410" y1="205" x2="900" y2="365"/>
+  <line class="ai-line" x1="490" y1="355" x2="900" y2="365"/>
+  <line class="ai-line" x1="250" y1="505" x2="900" y2="375"/>
+  <line class="ai-line" x1="250" y1="595" x2="900" y2="375"/>
+  <line class="ai-line" x1="510" y1="595" x2="900" y2="375"/>
+  <line class="ai-line" x1="380" y1="675" x2="900" y2="385"/>
+</svg>
+
+</div>
+
+<div style="margin: 30px auto; width: 1100px; font-size: 12px; color: #666;">
+  <p><strong>Legend:</strong> 
+    <span style="display:inline-block;width:12px;height:12px;background:#2c5aa0;border-radius:6px;vertical-align:middle;margin-right:4px;"></span> Standard Use Case &nbsp;&nbsp;
+    <span style="display:inline-block;width:12px;height:12px;background:#2c5aa0;border:2px dashed #e67e22;border-radius:6px;vertical-align:middle;margin-right:4px;"></span> AI-Powered Use Case (connects to Gemini) &nbsp;&nbsp;
+    <span style="display:inline-block;width:30px;height:0;border-top:2px dashed #e67e22;vertical-align:middle;margin-right:4px;"></span> AI Engine Connection
+  </p>
+</div>
+
+</body>
+</html>

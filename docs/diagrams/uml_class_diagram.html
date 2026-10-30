@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fig 6.2: UML Class Diagram - HireReady</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #fff; font-family: 'Segoe UI', Arial, sans-serif; padding: 30px; }
+h1 { text-align: center; font-size: 16px; margin-bottom: 30px; font-weight: 600; }
+.canvas { position: relative; width: 1400px; margin: 0 auto; min-height: 1100px; }
+.class-box { position: absolute; border: 2px solid #333; background: #fff; min-width: 220px; font-size: 12px; }
+.class-name { background: #e74c3c; color: #fff; padding: 6px 10px; text-align: center; font-weight: bold; font-size: 13px; border-bottom: 2px solid #333; }
+.attrs { padding: 6px 10px; border-bottom: 1px solid #999; }
+.attrs div { padding: 1px 0; }
+.methods { padding: 6px 10px; }
+.methods div { padding: 1px 0; }
+svg.lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+svg.lines line { stroke: #333; stroke-width: 1.5; }
+svg.lines text { font-size: 11px; fill: #333; font-family: 'Segoe UI', Arial, sans-serif; }
+.rel-label { position: absolute; background: #fff; padding: 0 4px; font-size: 11px; color: #333; }
+</style>
+</head>
+<body>
+<h1>Fig 6.2: Domain Object Model and UML Class Diagram of the HireReady Application</h1>
+<div class="canvas">
+
+<!-- User -->
+<div class="class-box" style="left:30px; top:0px; width:240px;">
+  <div class="class-name">User</div>
+  <div class="attrs">
+    <div>+id : String</div>
+    <div>+email : String (unique)</div>
+    <div>+passwordHash : String</div>
+    <div>+name : String</div>
+    <div>+createdAt : DateTime</div>
+  </div>
+  <div class="methods">
+    <div>+ login() : Boolean</div>
+    <div>+ register() : Boolean</div>
+  </div>
+</div>
+
+<!-- Profile -->
+<div class="class-box" style="left:350px; top:0px; width:240px;">
+  <div class="class-name">Profile</div>
+  <div class="attrs">
+    <div>+id : String</div>
+    <div>+userId : String (unique)</div>
+    <div>+targetJobRole : String</div>
+    <div>+experience : String</div>
+    <div>+skills : String</div>
+    <div>+updatedAt : DateTime</div>
+  </div>
+  <div class="methods">
+    <div>+ updateProfile() : Boolean</div>
+  </div>
+</div>
+
+<!-- BuiltResume -->
+<div class="class-box" style="left:670px; top:0px; width:240px;">
+  <div class="class-name">BuiltResume</div>
+  <div class="attrs">
+    <div>+id : String</div>
+    <div>+userId : String (unique)</div>
+    <div>+name : String</div>
+    <div>+email : String</div>
+    <div>+phone : String</div>
+    <div>+summary : String</div>
+    <div>+skills : String</div>
+    <div>+experience : Json</div>
+    <div>+education : Json</div>
+    <div>+template : String</div>
+    <div>+themeColor : String</div>
+    <div>+updatedAt : DateTime</div>
+  </div>
+  <div class="methods">
+    <div>+ saveResume() : Boolean</div>
+    <div>+ exportPDF() : void</div>
+  </div>
+</div>
+
+<!-- CareerRoadmap -->
+<div class="class-box" style="left:990px; top:0px; width:240px;">
+  <div class="class-name">CareerRoadmap</div>
+  <div class="attrs">
+    <div>+id : String</div>
+    <div>+userId : String (unique)</div>
+    <div>+targetRole : String</div>
+    <div>+pace : String</div>
+    <div>+focus : String</div>
+    <div>+createdAt : DateTime</div>
+    <div>+updatedAt : DateTime</div>
+  </div>
+  <div class="methods">
+    <div>+ generateRoadmap() : Boolean</div>
+  </div>
+</div>
+
+<!-- Resume -->
+<div class="class-box" style="left:30px; top:350px; width:240px;">
+  <div class="class-name">Resume</div>
+  <div class="attrs">
+    <div>+id : String</div>
+    <div>+userId : String</div>
+    <div>+fileUrl : String</div>
+    <div>+uploadedAt : DateTime</div>
+  </div>
+  <div class="methods">
+    <div>+ uploadFile() : String</div>
+  </div>
+</div>
+
+<!-- InterviewSession -->
+<div class="class-box" style="left:350px; top:350px; width:240px;">
+  <div class="class-name">InterviewSession</div>
+  <div class="attrs">
+    <div>+id : String</div>
+    <div>+userId : String</div>
+    <div>+status : String</div>
+    <div>+createdAt : DateTime</div>
+  </div>
+  <div class="methods">
+    <div>+ startSession() : Boolean</div>
+    <div>+ endSession() : Boolean</div>
+  </div>
+</div>
+
+<!-- RoadmapModule -->
+<div class="class-box" style="left:990px; top:350px; width:240px;">
+  <div class="class-name">RoadmapModule</div>
+  <div class="attrs">
+    <div>+id : String</div>
+    <div>+roadmapId : String</div>
+    <div>+stepId : String</div>
+    <div>+title : String</div>
+    <div>+status : String</div>
+    <div>+time : String</div>
+    <div>+concepts : String</div>
+    <div>+resources : String</div>
+    <div>+order : Int</div>
+  </div>
+  <div class="methods">
+    <div>+ markComplete() : Boolean</div>
+  </div>
+</div>
+
+<!-- AnalysisReport -->
+<div class="class-box" style="left:30px; top:650px; width:240px;">
+  <div class="class-name">AnalysisReport</div>
+  <div class="attrs">
+    <div>+id : String</div>
+    <div>+resumeId : String</div>
+    <div>+matchScore : Int</div>
+    <div>+missingKeywords : String</div>
+    <div>+formattingIssues : String</div>
+    <div>+aiSuggestions : String</div>
+    <div>+createdAt : DateTime</div>
+  </div>
+  <div class="methods">
+    <div>+ generateReport() : Object</div>
+  </div>
+</div>
+
+<!-- ChatMessage -->
+<div class="class-box" style="left:350px; top:650px; width:240px;">
+  <div class="class-name">ChatMessage</div>
+  <div class="attrs">
+    <div>+id : String</div>
+    <div>+sessionId : String</div>
+    <div>+sender : String</div>
+    <div>+message : String</div>
+    <div>+timestamp : DateTime</div>
+  </div>
+  <div class="methods">
+    <div>+ saveMessage() : Boolean</div>
+  </div>
+</div>
+
+<!-- Feedback -->
+<div class="class-box" style="left:670px; top:650px; width:240px;">
+  <div class="class-name">Feedback</div>
+  <div class="attrs">
+    <div>+id : String</div>
+    <div>+sessionId : String (unique)</div>
+    <div>+overallScore : Int</div>
+    <div>+grammarScore : Int</div>
+    <div>+technicalScore : Int</div>
+    <div>+detailedAnalysis : String</div>
+  </div>
+  <div class="methods">
+    <div>+ calculateScores() : Object</div>
+  </div>
+</div>
+
+<!-- SVG Relationship Lines -->
+<svg class="lines" viewBox="0 0 1400 1100">
+  <!-- User (150,180) to Profile (470,0) -->
+  <line x1="270" y1="90" x2="350" y2="90"/>
+  <text x="290" y="82">1</text><text x="340" y="82">0..1</text>
+
+  <!-- User (150,180) to Resume (150,350) -->
+  <line x1="150" y1="200" x2="150" y2="350"/>
+  <text x="130" y="220">1</text><text x="130" y="340">0..*</text>
+
+  <!-- User to BuiltResume -->
+  <line x1="270" y1="140" x2="670" y2="140"/>
+  <text x="280" y="133">1</text><text x="650" y="133">0..1</text>
+
+  <!-- User to CareerRoadmap -->
+  <line x1="270" y1="50" x2="990" y2="50"/>
+  <text x="280" y="43">1</text><text x="970" y="43">0..1</text>
+
+  <!-- User to InterviewSession -->
+  <line x1="270" y1="180" x2="350" y2="400"/>
+  <text x="275" y="200">1</text><text x="330" y="390">0..*</text>
+
+  <!-- Resume to AnalysisReport -->
+  <line x1="150" y1="500" x2="150" y2="650"/>
+  <text x="130" y="520">1</text><text x="130" y="640">0..*</text>
+
+  <!-- CareerRoadmap to RoadmapModule -->
+  <line x1="1110" y1="230" x2="1110" y2="350"/>
+  <text x="1090" y="250">1</text><text x="1090" y="340">0..*</text>
+
+  <!-- InterviewSession to ChatMessage -->
+  <line x1="470" y1="530" x2="470" y2="650"/>
+  <text x="450" y="550">1</text><text x="450" y="640">0..*</text>
+
+  <!-- InterviewSession to Feedback -->
+  <line x1="590" y1="480" x2="670" y2="700"/>
+  <text x="595" y="500">1</text><text x="655" y="690">0..1</text>
+</svg>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fig 6.4: ERD - HireReady Database Schema</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #fff; font-family: 'Segoe UI', Arial, sans-serif; padding: 30px; }
+h1 { text-align: center; font-size: 16px; margin-bottom: 30px; font-weight: 600; }
+.canvas { position: relative; width: 1300px; margin: 0 auto; min-height: 1050px; }
+.table-box { position: absolute; border: 1px solid #ccc; background: #fff; min-width: 210px; font-size: 11.5px; border-radius: 4px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+.table-name { background: #2c3e6b; color: #fff; padding: 7px 12px; font-weight: bold; font-size: 13px; }
+.table-row { padding: 4px 12px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+.table-row:last-child { border-bottom: none; }
+.col-name { font-weight: 500; }
+.col-type { color: #666; margin-left: 10px; }
+.badge { display: inline-block; font-size: 9px; padding: 1px 4px; border-radius: 3px; margin-left: 4px; font-weight: bold; }
+.pk { background: #f1c40f; color: #333; }
+.fk { background: #3498db; color: #fff; }
+.nn { background: #e74c3c; color: #fff; }
+.uk { background: #2ecc71; color: #fff; }
+svg.lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+svg.lines line { stroke: #555; stroke-width: 1.5; }
+svg.lines text { font-size: 10px; fill: #333; }
+</style>
+</head>
+<body>
+<h1>Fig 6.4: Database Schema Entity Relationship Diagram for HireReady</h1>
+<div class="canvas">
+
+<!-- users -->
+<div class="table-box" style="left:0px; top:0px; width:230px;">
+  <div class="table-name">users</div>
+  <div class="table-row"><span class="col-name">id</span><span><span class="col-type">varchar</span><span class="badge pk">PK</span></span></div>
+  <div class="table-row"><span class="col-name">email</span><span><span class="col-type">varchar</span><span class="badge nn">NN</span><span class="badge uk">UK</span></span></div>
+  <div class="table-row"><span class="col-name">passwordHash</span><span><span class="col-type">varchar</span><span class="badge nn">NN</span></span></div>
+  <div class="table-row"><span class="col-name">name</span><span><span class="col-type">varchar</span><span class="badge nn">NN</span></span></div>
+  <div class="table-row"><span class="col-name">createdAt</span><span class="col-type">timestamp</span></div>
+</div>
+
+<!-- profiles -->
+<div class="table-box" style="left:300px; top:0px; width:230px;">
+  <div class="table-name">profiles</div>
+  <div class="table-row"><span class="col-name">id</span><span><span class="col-type">varchar</span><span class="badge pk">PK</span></span></div>
+  <div class="table-row"><span class="col-name">userId</span><span><span class="col-type">varchar</span><span class="badge fk">FK</span><span class="badge nn">NN</span><span class="badge uk">UK</span></span></div>
+  <div class="table-row"><span class="col-name">targetJobRole</span><span><span class="col-type">varchar</span><span class="badge nn">NN</span></span></div>
+  <div class="table-row"><span class="col-name">experience</span><span><span class="col-type">varchar</span><span class="badge nn">NN</span></span></div>
+  <div class="table-row"><span class="col-name">skills</span><span class="col-type">text</span></div>
+  <div class="table-row"><span class="col-name">updatedAt</span><span class="col-type">timestamp</span></div>
+</div>
+
+<!-- built_resumes -->
+<div class="table-box" style="left:600px; top:0px; width:230px;">
+  <div class="table-name">built_resumes</div>
+  <div class="table-row"><span class="col-name">id</span><span><span class="col-type">varchar</span><span class="badge pk">PK</span></span></div>
+  <div class="table-row"><span class="col-name">userId</span><span><span class="col-type">varchar</span><span class="badge fk">FK</span><span class="badge nn">NN</span><span class="badge uk">UK</span></span></div>
+  <div class="table-row"><span class="col-name">name</span><span class="col-type">varchar</span></div>
+  <div class="table-row"><span class="col-name">email</span><span class="col-type">varchar</span></div>
+  <div class="table-row"><span class="col-name">phone</span><span class="col-type">varchar</span></div>
+  <div class="table-row"><span class="col-name">location</span><span class="col-type">varchar</span></div>
+  <div class="table-row"><span class="col-name">website</span><span class="col-type">varchar</span></div>
+  <div class="table-row"><span class="col-name">summary</span><span class="col-type">text</span></div>
+  <div class="table-row"><span class="col-name">skills</span><span class="col-type">text</span></div>
+  <div class="table-row"><span class="col-name">experience</span><span class="col-type">json</span></div>
+  <div class="table-row"><span class="col-name">education</span><span class="col-type">json</span></div>
+  <div class="table-row"><span class="col-name">template</span><span class="col-type">varchar</span></div>
+  <div class="table-row"><span class="col-name">themeColor</span><span class="col-type">varchar</span></div>
+  <div class="table-row"><span class="col-name">updatedAt</span><span class="col-type">timestamp</span></div>
+</div>
+
+<!-- career_roadmaps -->
+<div class="table-box" style="left:900px; top:0px; width:230px;">
+  <div class="table-name">career_roadmaps</div>
+  <div class="table-row"><span class="col-name">id</span><span><span class="col-type">varchar</span><span class="badge pk">PK</span></span></div>
+  <div class="table-row"><span class="col-name">userId</span><span><span class="col-type">varchar</span><span class="badge fk">FK</span><span class="badge nn">NN</span><span class="badge uk">UK</span></span></div>
+  <div class="table-row"><span class="col-name">targetRole</span><span class="col-type">varchar</span></div>
+  <div class="table-row"><span class="col-name">pace</span><span class="col-type">varchar</span></div>
+  <div class="table-row"><span class="col-name">focus</span><span class="col-type">varchar</span></div>
+  <div class="table-row"><span class="col-name">createdAt</span><span class="col-type">timestamp</span></div>
+  <div class="table-row"><span class="col-name">updatedAt</span><span class="col-type">timestamp</span></div>
+</div>
+
+<!-- resumes -->
+<div class="table-box" style="left:0px; top:380px; width:230px;">
+  <div class="table-name">resumes</div>
+  <div class="table-row"><span class="col-name">id</span><span><span class="col-type">varchar</span><span class="badge pk">PK</span></span></div>
+  <div class="table-row"><span class="col-name">userId</span><span><span class="col-type">varchar</span><span class="badge fk">FK</span><span class="badge nn">NN</span></span></div>
+  <div class="table-row"><span class="col-name">fileUrl</span><span><span class="col-type">varchar</span><span class="badge nn">NN</span></span></div>
+  <div class="table-row"><span class="col-name">uploadedAt</span><span class="col-type">timestamp</span></div>
+</div>
+
+<!-- interview_sessions -->
+<div class="table-box" style="left:300px; top:380px; width:230px;">
+  <div class="table-name">interview_sessions</div>
+  <div class="table-row"><span class="col-name">id</span><span><span class="col-type">varchar</span><span class="badge pk">PK</span></span></div>
+  <div class="table-row"><span class="col-name">userId</span><span><span class="col-type">varchar</span><span class="badge fk">FK</span><span class="badge nn">NN</span></span></div>
+  <div class="table-row"><span class="col-name">status</span><span class="col-type">varchar</span></div>
+  <div class="table-row"><span class="col-name">createdAt</span><span class="col-type">timestamp</span></div>
+</div>
+
+<!-- roadmap_modules -->
+<div class="table-box" style="left:900px; top:380px; width:230px;">
+  <div class="table-name">roadmap_modules</div>
+  <div class="table-row"><span class="col-name">id</span><span><span class="col-type">varchar</span><span class="badge pk">PK</span></span></div>
+  <div class="table-row"><span class="col-name">roadmapId</span><span><span class="col-type">varchar</span><span class="badge fk">FK</span><span class="badge nn">NN</span></span></div>
+  <div class="table-row"><span class="col-name">stepId</span><span class="col-type">varchar</span></div>
+  <div class="table-row"><span class="col-name">title</span><span class="col-type">varchar</span></div>
+  <div class="table-row"><span class="col-name">status</span><span class="col-type">varchar</span></div>
+  <div class="table-row"><span class="col-name">time</span><span class="col-type">varchar</span></div>
+  <div class="table-row"><span class="col-name">concepts</span><span class="col-type">text</span></div>
+  <div class="table-row"><span class="col-name">resources</span><span class="col-type">text</span></div>
+  <div class="table-row"><span class="col-name">order</span><span><span class="col-type">integer</span><span class="badge nn">NN</span></span></div>
+</div>
+
+<!-- analysis_reports -->
+<div class="table-box" style="left:0px; top:700px; width:230px;">
+  <div class="table-name">analysis_reports</div>
+  <div class="table-row"><span class="col-name">id</span><span><span class="col-type">varchar</span><span class="badge pk">PK</span></span></div>
+  <div class="table-row"><span class="col-name">resumeId</span><span><span class="col-type">varchar</span><span class="badge fk">FK</span><span class="badge nn">NN</span></span></div>
+  <div class="table-row"><span class="col-name">matchScore</span><span><span class="col-type">integer</span><span class="badge nn">NN</span></span></div>
+  <div class="table-row"><span class="col-name">missingKeywords</span><span class="col-type">text</span></div>
+  <div class="table-row"><span class="col-name">formattingIssues</span><span class="col-type">text</span></div>
+  <div class="table-row"><span class="col-name">aiSuggestions</span><span class="col-type">text</span></div>
+  <div class="table-row"><span class="col-name">createdAt</span><span class="col-type">timestamp</span></div>
+</div>
+
+<!-- chat_messages -->
+<div class="table-box" style="left:300px; top:700px; width:230px;">
+  <div class="table-name">chat_messages</div>
+  <div class="table-row"><span class="col-name">id</span><span><span class="col-type">varchar</span><span class="badge pk">PK</span></span></div>
+  <div class="table-row"><span class="col-name">sessionId</span><span><span class="col-type">varchar</span><span class="badge fk">FK</span><span class="badge nn">NN</span></span></div>
+  <div class="table-row"><span class="col-name">sender</span><span class="col-type">varchar</span></div>
+  <div class="table-row"><span class="col-name">message</span><span><span class="col-type">text</span><span class="badge nn">NN</span></span></div>
+  <div class="table-row"><span class="col-name">timestamp</span><span class="col-type">timestamp</span></div>
+</div>
+
+<!-- feedbacks -->
+<div class="table-box" style="left:600px; top:700px; width:230px;">
+  <div class="table-name">feedbacks</div>
+  <div class="table-row"><span class="col-name">id</span><span><span class="col-type">varchar</span><span class="badge pk">PK</span></span></div>
+  <div class="table-row"><span class="col-name">sessionId</span><span><span class="col-type">varchar</span><span class="badge fk">FK</span><span class="badge nn">NN</span><span class="badge uk">UK</span></span></div>
+  <div class="table-row"><span class="col-name">overallScore</span><span><span class="col-type">integer</span><span class="badge nn">NN</span></span></div>
+  <div class="table-row"><span class="col-name">grammarScore</span><span><span class="col-type">integer</span><span class="badge nn">NN</span></span></div>
+  <div class="table-row"><span class="col-name">technicalScore</span><span><span class="col-type">integer</span><span class="badge nn">NN</span></span></div>
+  <div class="table-row"><span class="col-name">detailedAnalysis</span><span><span class="col-type">text</span><span class="badge nn">NN</span></span></div>
+</div>
+
+<!-- Relationship Lines -->
+<svg class="lines" viewBox="0 0 1300 1050">
+  <!-- users → profiles -->
+  <line x1="230" y1="60" x2="300" y2="60"/>
+  <text x="235" y="53">1</text><text x="285" y="53">1</text>
+
+  <!-- users → built_resumes -->
+  <line x1="230" y1="30" x2="600" y2="30"/>
+  <text x="240" y="23">1</text><text x="580" y="23">0..1</text>
+
+  <!-- users → career_roadmaps -->
+  <line x1="230" y1="15" x2="900" y2="15"/>
+  <text x="240" y="10">1</text><text x="880" y="10">0..1</text>
+
+  <!-- users → resumes -->
+  <line x1="115" y1="170" x2="115" y2="380"/>
+  <text x="95" y="190">1</text><text x="95" y="370">0..*</text>
+
+  <!-- users → interview_sessions -->
+  <line x1="230" y1="140" x2="300" y2="400"/>
+  <text x="235" y="160">1</text><text x="285" y="390">0..*</text>
+
+  <!-- resumes → analysis_reports -->
+  <line x1="115" y1="510" x2="115" y2="700"/>
+  <text x="95" y="530">1</text><text x="95" y="690">0..*</text>
+
+  <!-- career_roadmaps → roadmap_modules -->
+  <line x1="1015" y1="220" x2="1015" y2="380"/>
+  <text x="995" y="240">1</text><text x="995" y="370">0..*</text>
+
+  <!-- interview_sessions → chat_messages -->
+  <line x1="415" y1="510" x2="415" y2="700"/>
+  <text x="395" y="530">1</text><text x="395" y="690">0..*</text>
+
+  <!-- interview_sessions → feedbacks -->
+  <line x1="530" y1="470" x2="600" y2="740"/>
+  <text x="535" y="490">1</text><text x="585" y="730">0..1</text>
+</svg>
+
+</div>
+</body>
+</html>
