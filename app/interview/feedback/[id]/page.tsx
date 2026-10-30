@@ -207,7 +207,7 @@ export default function InterviewFeedback() {
     100,
     Math.max(
       30,
-      // Math.round((feedback.overallScore * 3 - feedback?.technicalScore - feedback?.grammarScore))
+      // Math.round((feedback?.overallScore * 3 - feedback?.technicalScore - feedback?.grammarScore))
     )
   );
 
@@ -274,7 +274,7 @@ export default function InterviewFeedback() {
           <div className="glass-panel p-6 rounded-2xl border border-white/5 flex flex-col items-center justify-center text-center relative overflow-hidden">
             <div className="absolute top-0 right-0 w-24 h-24 bg-brand-500/10 rounded-full blur-2xl pointer-events-none" />
             <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-2">Overall Score</span>
-            <div className="text-5xl font-black text-white bg-clip-text text-transparent bg-gradient-to-r from-brand-500 via-indigo-200 to-accent-cyan">{feedback.overallScore}%</div>
+            <div className="text-5xl font-black text-white bg-clip-text text-transparent bg-gradient-to-r from-brand-500 via-indigo-200 to-accent-cyan">{feedback?.overallScore}%</div>
             <span className="text-xs font-bold text-accent-emerald mt-2 uppercase tracking-wide flex items-center gap-1">
               <CheckCircle2 className="w-3.5 h-3.5" /> Checked
             </span>
