@@ -207,7 +207,7 @@ export default function InterviewFeedback() {
     100,
     Math.max(
       30,
-      Math.round((feedback.overallScore * 3 - feedback.technicalScore - feedback.grammarScore))
+      // Math.round((feedback.overallScore * 3 - feedback?.technicalScore - feedback?.grammarScore))
     )
   );
 
